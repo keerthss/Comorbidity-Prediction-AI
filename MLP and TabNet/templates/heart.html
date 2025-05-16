@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Disease Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F5F7FA;
+            padding-bottom: 50px;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #2C3638, #3E4E50);
+            padding: 15px 0;
+        }
+        .nav-link:hover {
+            color: #17A2B8 !important;
+        }
+        .featurette {
+            padding: 4rem 0;
+        }
+        .category-box {
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+        }
+        .category-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .category-box p {
+            margin: 0;
+            color: black;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        /* Added Padding & Spacing */
+        .blog-post {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+        .form-container {
+            max-width: 700px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header class="text-white">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h3 class="m-0">Disease Prediction</h3>
+            <nav>
+                <ul class="nav">
+                    <li><a href="/" class="nav-link px-3 text-white">Home</a></li>
+                    <li><a href="/predict" class="nav-link px-3 text-white">Predict</a></li>
+                    <li><a href="/login" class="nav-link px-3 text-white">Login</a></li>
+                    <li><a href="/signup" class="nav-link px-3 text-white">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <body>
+
+            <article class="m-4">
+                <h2 class="display-5 link-body-emphasis mb-3">Heart Disease: Understanding Risks & Early Prediction</h2>
+                <p class="blog-post-meta">March 23, 2025 by <a href="#">Health Insights</a></p>
+        
+                <p>Heart disease is a broad term covering various cardiovascular conditions that affect the heart's function. It is a leading cause of death worldwide, but **early detection and lifestyle modifications** can significantly reduce risks and improve heart health.</p>
+        
+                <h3>Common Types of Heart Disease</h3>
+                <ul>
+                    <li><strong>Coronary Artery Disease (CAD):</strong> A condition caused by plaque buildup in the arteries, leading to reduced blood flow to the heart.</li>
+                    <li><strong>Heart Attack (Myocardial Infarction):</strong> A blockage in the coronary arteries that prevents oxygen from reaching the heart muscle.</li>
+                    <li><strong>Arrhythmia:</strong> Irregular heartbeats that can cause dizziness, palpitations, or even sudden cardiac arrest.</li>
+                    <li><strong>Heart Failure:</strong> A condition where the heart is unable to pump blood effectively, leading to fatigue, swelling, and breathing difficulties.</li>
+                    <li><strong>Valvular Heart Disease:</strong> Issues with heart valves that affect blood flow efficiency.</li>
+                </ul>
+        
+                <h3>Key Risk Factors</h3>
+                <p>Several factors contribute to the risk of developing heart disease, including:</p>
+                <ul>
+                    <li><strong>High Blood Pressure (Hypertension):</strong> Puts excessive strain on the heart.</li>
+                    <li><strong>High Cholesterol:</strong> Leads to plaque buildup in arteries.</li>
+                    <li><strong>Diabetes:</strong> Increases the likelihood of cardiovascular complications.</li>
+                    <li><strong>Smoking:</strong> Damages blood vessels and reduces oxygen supply.</li>
+                    <li><strong>Obesity & Inactivity:</strong> Excess weight puts added stress on the heart.</li>
+                    <li><strong>Family History:</strong> Genetics play a role in heart disease susceptibility.</li>
+                </ul>
+        
+                <h3>Heart Disease Diagnosis & Indicators</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered mt-3">
+                        <thead>
+                            <tr>
+                                <th>Indicator</th>
+                                <th>Normal Range</th>
+                                <th>Risk Level</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Blood Pressure (mmHg)</strong></td>
+                                <td>120/80</td>
+                                <td>Above 130/90 (Hypertension)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cholesterol (mg/dL)</strong></td>
+                                <td>Total &lt; 200</td>
+                                <td>Above 240 (High Risk)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Resting Heart Rate (bpm)</strong></td>
+                                <td>60 - 100</td>
+                                <td>Above 100 (Tachycardia)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Body Mass Index (BMI)</strong></td>
+                                <td>18.5 - 24.9</td>
+                                <td>Above 30 (Obese)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        
+            </article>
+        </div>
+        
+        <div class="container mt-5">
+            <div class="form-container shadow p-4 rounded">
+                 <h2 class="text-center mb-4">Heart Disease Prediction</h2>
+                 <form action="/heart" method="post">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Age:</label>
+                            <input type="number" name="age" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Sex:</label>
+                            <select name="sex" class="form-select" required>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+        
+                        <div class="col-md-6">
+                            <label class="form-label">Chest Pain Type:</label>
+                            <input type="number" name="cp" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Resting Blood Pressure:</label>
+                            <input type="number" name="trestbps" class="form-control" required>
+                        </div>
+        
+                        <div class="col-md-6">
+                            <label class="form-label">Cholesterol:</label>
+                            <input type="number" name="chol" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Fasting Blood Sugar > 120 mg/dl:</label>
+                            <select name="fbs" class="form-select" required>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+        
+                        <div class="col-md-6">
+                            <label class="form-label">Resting ECG Results:</label>
+                            <input type="number" name="restecg" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Max Heart Rate Achieved:</label>
+                            <input type="number" name="thalach" class="form-control" required>
+                        </div>
+        
+                        <div class="col-md-6">
+                            <label class="form-label">Exercise Induced Angina:</label>
+                            <select name="exang" class="form-select" required>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Oldpeak:</label>
+                            <input type="number" step="0.1" name="oldpeak" class="form-control" required>
+                        </div>
+        
+                        <div class="col-md-6">
+                            <label class="form-label">Slope:</label>
+                            <input type="number" name="slope" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">CA:</label>
+                            <input type="number" name="ca" class="form-control" required>
+                        </div>
+        
+                        <div class="col-md-12">
+                            <label class="form-label">Thal:</label>
+                            <input type="number" name="thal" class="form-control" required>
+                        </div>
+                    </div>
+        
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Predict</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        </body>
+        </html>
+        
+       

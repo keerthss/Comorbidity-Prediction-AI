@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Kidney Disease Prediction</title>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Disease Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F5F7FA;
+            padding-bottom: 50px;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #2C3638, #3E4E50);
+            padding: 15px 0;
+        }
+        .nav-link:hover {
+            color: #17A2B8 !important;
+        }
+        .featurette {
+            padding: 4rem 0;
+        }
+        .category-box {
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+        }
+        .category-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .category-box p {
+            margin: 0;
+            color: black;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        /* Added Padding & Spacing */
+        .blog-post {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+        .form-container {
+            max-width: 700px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header class="text-white">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h3 class="m-0">Disease Prediction</h3>
+            <nav>
+                <ul class="nav">
+                    <li><a href="/" class="nav-link px-3 text-white">Home</a></li>
+                    <li><a href="/predict" class="nav-link px-3 text-white">Predict</a></li>
+                    <li><a href="/login" class="nav-link px-3 text-white">Login</a></li>
+                    <li><a href="/signup" class="nav-link px-3 text-white">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+<body>
+    <article class="m-4">
+        <h2 class="display-5 link-body-emphasis mb-3">Obesity: Understanding the Condition & Managing the Risks</h2>
+        <p class="blog-post-meta">March 23, 2025 by <a href="#">Health Insights</a></p>
+    
+        <p>Obesity is a chronic health condition characterized by excessive body fat accumulation that increases the risk of **heart disease, diabetes, high blood pressure, and other health issues.** It is often caused by a combination of genetic, behavioral, and environmental factors.</p>
+    
+        <h3>Common Health Risks of Obesity</h3>
+        <ul>
+            <li><strong>Heart Disease & Stroke:</strong> Excess weight increases blood pressure and cholesterol levels.</li>
+            <li><strong>Type 2 Diabetes:</strong> Obesity is a major risk factor for insulin resistance.</li>
+            <li><strong>Joint Pain & Osteoarthritis:</strong> Extra weight puts stress on the joints, leading to wear and tear.</li>
+            <li><strong>Sleep Apnea & Breathing Issues:</strong> Fat deposits around the neck can obstruct breathing during sleep.</li>
+            <li><strong>Digestive Issues:</strong> Increased risk of GERD (acid reflux) and fatty liver disease.</li>
+            <li><strong>Depression & Low Self-Esteem:</strong> Mental health effects due to societal stigma and body image concerns.</li>
+        </ul>
+    
+        <h3>Diagnosis & Key Indicators</h3>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>Measure</th>
+                    <th>Normal</th>
+                    <th>Indicates Obesity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Body Mass Index (BMI)</strong></td>
+                    <td>18.5 - 24.9</td>
+                    <td>&gt; 30 (Obese)</td>
+                </tr>
+                <tr>
+                    <td><strong>Waist Circumference</strong></td>
+                    <td>&lt; 40 inches (Men) &lt; 35 inches (Women)</td>
+                    <td>&gt; 40 inches (Men) &gt; 35 inches (Women)</td>
+                </tr>
+                <tr>
+                    <td><strong>Body Fat Percentage</strong></td>
+                    <td>14 - 24% (Men) / 21 - 31% (Women)</td>
+                    <td>&gt; 25% (Men) / &gt; 32% (Women)</td>
+                </tr>
+                <tr>
+                    <td><strong>Waist-to-Hip Ratio</strong></td>
+                    <td>&lt; 0.90 (Men) &lt; 0.85 (Women)</td>
+                    <td>&gt; 0.90 (Men) &gt; 0.85 (Women)</td>
+                </tr>
+            </tbody>
+        </table>
+    
+    
+    </article>
+    
+    <div class="container mt-5">
+        <div class="form-container shadow p-4 rounded">
+            <h2 class="text-center mb-4">Obesity Prediction</h2>
+            <form action="/obesity" method="post">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">BMI:</label>
+                        <input type="number" step="0.1" name="bmi" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Waist Circumference (cm):</label>
+                        <input type="number" step="0.1" name="waist_circumference" class="form-control" required>
+                    </div>
+    
+                    <div class="col-md-6">
+                        <label class="form-label">Physical Activity (hours per week):</label>
+                        <input type="number" step="0.1" name="physical_activity" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Daily Caloric Intake:</label>
+                        <input type="number" name="caloric_intake" class="form-control" required>
+                    </div>
+    
+                    <div class="col-md-6">
+                        <label class="form-label">Family History of Obesity:</label>
+                        <select name="family_history" class="form-select" required>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Sugar Consumption (times per week):</label>
+                        <input type="number" name="sugar_consumption" class="form-control" required>
+                    </div>
+    
+                    <div class="col-md-6">
+                        <label class="form-label">Fast Food Consumption (times per week):</label>
+                        <input type="number" name="fast_food" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Sleep Duration (hours per night):</label>
+                        <input type="number" step="0.1" name="sleep_duration" class="form-control" required>
+                    </div>
+                </div>
+    
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Predict</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

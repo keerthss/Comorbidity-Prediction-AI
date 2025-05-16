@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Disease Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F5F7FA;
+            padding-bottom: 50px;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #2C3638, #3E4E50);
+            padding: 15px 0;
+        }
+        .nav-link:hover {
+            color: #17A2B8 !important;
+        }
+        .featurette {
+            padding: 4rem 0;
+        }
+        .category-box {
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+        }
+        .category-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .category-box p {
+            margin: 0;
+            color: black;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        /* Added Padding & Spacing */
+        .blog-post {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+        .form-container {
+            max-width: 700px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header class="text-white">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h3 class="m-0">Disease Prediction</h3>
+            <nav>
+                <ul class="nav">
+                    <li><a href="/" class="nav-link px-3 text-white">Home</a></li>
+                    <li><a href="/predict" class="nav-link px-3 text-white">Predict</a></li>
+                    <li><a href="/login" class="nav-link px-3 text-white">Login</a></li>
+                    <li><a href="/signup" class="nav-link px-3 text-white">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <body>
+        <article class="m-4">
+            <h2 class="display-5 link-body-emphasis mb-3">Celiac Disease: Understanding the Condition & Managing the Risks</h2>
+            <p class="blog-post-meta">March 23, 2025 by <a href="#">Health Insights</a></p>
+        
+            <p>Celiac disease is an autoimmune disorder where the ingestion of gluten triggers an immune response that damages the small intestine. This damage can lead to **nutrient malabsorption**, digestive issues, and long-term health complications. However, with **early detection and a strict gluten-free diet,** individuals with celiac disease can lead healthy lives.</p>
+        
+            <h3>Symptoms of Celiac Disease</h3>
+            <ul>
+                <li><strong>Digestive Issues:</strong> Bloating, diarrhea, constipation, and abdominal pain.</li>
+                <li><strong>Fatigue:</strong> Chronic tiredness due to poor nutrient absorption.</li>
+                <li><strong>Weight Loss:</strong> Involuntary weight loss due to malabsorption.</li>
+                <li><strong>Skin Issues:</strong> Dermatitis herpetiformis (itchy rash linked to gluten ingestion).</li>
+                <li><strong>Bone & Joint Pain:</strong> Increased risk of osteoporosis due to calcium deficiency.</li>
+                <li><strong>Neurological Symptoms:</strong> Headaches, depression, anxiety, and brain fog.</li>
+            </ul>
+        
+            <h3>Diagnosis & Indicators</h3>
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>Test</th>
+                        <th>Normal</th>
+                        <th>Indicates Celiac Disease</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Tissue Transglutaminase Antibody (tTG-IgA)</strong></td>
+                        <td>Negative</td>
+                        <td>Positive</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Endomysial Antibody (EMA-IgA)</strong></td>
+                        <td>Negative</td>
+                        <td>Positive</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Deamidated Gliadin Peptide (DGP-IgA/IgG)</strong></td>
+                        <td>Negative</td>
+                        <td>Positive</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Small Intestine Biopsy</strong></td>
+                        <td>Normal Villi</td>
+                        <td>Flattened Villi (Damage Present)</td>
+                    </tr>
+                </tbody>
+            </table>
+        
+    
+        </article>
+        
+        <div class="container">
+            <div class="form-container">
+                <h2 class="text-center mb-4">Celiac Disease Prediction</h2>
+                <form action="/celiac" method="post">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">IgA Level:</label>
+                            <input type="number" step="0.01" name="iga" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">IgG Level:</label>
+                            <input type="number" step="0.01" name="igg" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">tTG Level:</label>
+                            <input type="number" step="0.01" name="tTG" class="form-control" required>
+                        </div>
+                    </div>
+        
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Predict</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+</body>
+</html>

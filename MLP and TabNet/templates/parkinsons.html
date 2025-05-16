@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Disease Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F5F7FA;
+            padding-bottom: 50px;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #2C3638, #3E4E50);
+            padding: 15px 0;
+        }
+        .nav-link:hover {
+            color: #17A2B8 !important;
+        }
+        .featurette {
+            padding: 4rem 0;
+        }
+        .category-box {
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+        }
+        .category-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .category-box p {
+            margin: 0;
+            color: black;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        /* Added Padding & Spacing */
+        .blog-post {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+        .form-container {
+            max-width: 700px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header class="text-white">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h3 class="m-0">Disease Prediction</h3>
+            <nav>
+                <ul class="nav">
+                    <li><a href="/" class="nav-link px-3 text-white">Home</a></li>
+                    <li><a href="/predict" class="nav-link px-3 text-white">Predict</a></li>
+                    <li><a href="/login" class="nav-link px-3 text-white">Login</a></li>
+                    <li><a href="/signup" class="nav-link px-3 text-white">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <body>
+
+        <div>
+            <article class="m-4">
+                <h2 class="display-5 mb-3 ">Parkinson’s Disease: Symptoms, Causes & Early Detection</h2>
+                <p class="text-muted">March 23, 2025 by <a href="#">Health Insights</a></p>
+        
+                <p>Parkinson’s disease is a progressive neurological disorder that affects movement. It occurs when **dopamine-producing neurons** in the brain degenerate over time. Although there is no cure, **early detection and proper management** can significantly improve quality of life.</p>
+        
+                <h3>Common Symptoms of Parkinson’s Disease</h3>
+                <ul>
+                    <li><strong>Tremors:</strong> Uncontrollable shaking, usually in the hands or fingers.</li>
+                    <li><strong>Bradykinesia (Slowed Movement):</strong> Difficulty initiating movements or experiencing a slowing down over time.</li>
+                    <li><strong>Muscle Rigidity:</strong> Stiffness in the limbs or torso.</li>
+                    <li><strong>Postural Instability:</strong> Difficulty maintaining balance and coordination.</li>
+                    <li><strong>Speech Changes:</strong> Soft, slurred, or hesitant speech patterns.</li>
+                </ul>
+        
+                <h3>Key Risk Factors</h3>
+                <p>While the exact cause of Parkinson’s remains unknown, several factors contribute to the risk:</p>
+                <ul>
+                    <li><strong>Age:</strong> Most cases occur after 60, though early-onset Parkinson’s can appear before 50.</li>
+                    <li><strong>Genetics:</strong> Family history can increase susceptibility.</li>
+                    <li><strong>Environmental Triggers:</strong> Exposure to toxins like pesticides or heavy metals.</li>
+                    <li><strong>Brain Injuries:</strong> Repeated head trauma may increase risk.</li>
+                </ul>
+        
+                <h3>Parkinson’s Diagnosis & Key Indicators</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered mt-3">
+                        <thead >
+                            <tr>
+                                <th>Indicator</th>
+                                <th>Normal Condition</th>
+                                <th>Possible Parkinson’s Risk</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Hand Tremors</strong></td>
+                                <td>No noticeable tremors</td>
+                                <td>Shaking, even at rest</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Muscle Stiffness</strong></td>
+                                <td>Normal flexibility</td>
+                                <td>Increased resistance in movement</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Walking Pattern</strong></td>
+                                <td>Normal stride and posture</td>
+                                <td>Shuffling gait, stooped posture</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Speech</strong></td>
+                                <td>Clear and strong voice</td>
+                                <td>Soft, slurred, or monotone voice</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        
+        
+
+<div class="container mt-5">
+    <div class="form-container shadow p-4 rounded">
+        <h2 class="text-center mb-4">Parkinson's Disease Prediction</h2>
+        <form action="/parkinsons" method="post">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Fo:</label>
+                    <input type="number" step="0.01" name="fo" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Fhi:</label>
+                    <input type="number" step="0.01" name="fhi" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Flo:</label>
+                    <input type="number" step="0.01" name="flo" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Jitter (%):</label>
+                    <input type="number" step="0.01" name="jitter_percent" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">RAP:</label>
+                    <input type="number" step="0.01" name="rap" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">HNR:</label>
+                    <input type="number" step="0.01" name="hnr" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Spread1:</label>
+                    <input type="number" step="0.01" name="spread1" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Spread2:</label>
+                    <input type="number" step="0.01" name="spread2" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">D2:</label>
+                    <input type="number" step="0.01" name="d2" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">PPE:</label>
+                    <input type="number" step="0.01" name="ppe" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary btn-lg">Predict</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

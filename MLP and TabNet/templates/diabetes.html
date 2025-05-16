@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Disease Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F5F7FA;
+            padding-bottom: 50px;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #2C3638, #3E4E50);
+            padding: 15px 0;
+        }
+        .nav-link:hover {
+            color: #17A2B8 !important;
+            color: #17A2B8 !important;
+            font-weight: bold;
+        }
+        .featurette {
+            padding: 4rem 0;
+        }
+        .category-box {
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+        }
+        .category-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .table-container {
+            scroll-margin-top: 100px; /* Adjusts scroll position for better visibility */
+        }
+        .category-box p {
+            margin: 0;
+            color: black;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        /* Added Padding & Spacing */
+        .blog-post {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+        .form-container {
+            max-width: 700px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header class="text-white">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h3 class="m-0">Disease Prediction</h3>
+            <nav>
+                <ul class="nav">
+                    <li><a href="/" class="nav-link px-3 text-white">Home</a></li>
+                    <li><a href="/predict" class="nav-link px-3 text-white">Predict</a></li>
+                    <li><a href="/login" class="nav-link px-3 text-white">Login</a></li>
+                    <li><a href="/signup" class="nav-link px-3 text-white">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <article class="m-4">
+        <h2 class="display-5 link-body-emphasis mb-3">Diabetes: Understanding the Condition & Predicting the Risk</h2>
+        <p class="blog-post-meta">March 23, 2025 by <a href="#">Health Insights</a></p>
+
+        <p>Diabetes is a chronic metabolic disorder that affects how the body processes blood sugar (glucose). High blood sugar levels over time can lead to serious complications affecting the heart, kidneys, nerves, and eyes. But with early prediction and proper management, diabetes-related complications can be prevented.</p>
+
+        <h3>Types of Diabetes</h3>
+        <ul>
+            <li><strong>Type 1 Diabetes:</strong> An autoimmune condition where the body attacks insulin-producing cells. It requires insulin therapy.</li>
+            <li><strong>Type 2 Diabetes:</strong> The most common type, often linked to lifestyle, genetics, and insulin resistance. It can be managed with diet, exercise, and medication.</li>
+            <li><strong>Gestational Diabetes:</strong> Occurs during pregnancy and increases the risk of developing Type 2 diabetes later.</li>
+            <li><strong>Prediabetes:</strong> A warning stage where blood sugar levels are higher than normal but not yet in the diabetic range. Early lifestyle changes can reverse it.</li>
+        </ul>
+
+        <h3>Blood Sugar Levels & Diagnosis</h3>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>Test</th>
+                    <th>Normal</th>
+                    <th>Prediabetes</th>
+                    <th>Diabetes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Fasting Blood Sugar (mg/dL)</strong></td>
+                    <td>&lt; 100</td>
+                    <td>100 - 125</td>
+                    <td>&gt; 126</td>
+                </tr>
+                <tr>
+                    <td><strong>Oral Glucose Tolerance Test (mg/dL)</strong></td>
+                    <td>&lt; 140</td>
+                    <td>140 - 199</td>
+                    <td>&gt; 200</td>
+                </tr>
+                <tr>
+                    <td><strong>HbA1c (% - 3-Month Avg)</strong></td>
+                    <td>&lt; 5.7%</td>
+                    <td>5.7% - 6.4%</td>
+                    <td>&gt; 6.5%</td>
+                </tr>
+            </tbody>
+        </table>
+    </article>
+
+        <div class="container">
+            <div class="form-container">
+                <h2 class="text-center mb-4">Diabetes Prediction</h2>
+                <form action="/diabetes" method="post">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Pregnancies:</label>
+                            <input type="number" name="pregnancies" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Glucose Level:</label>
+                            <input type="number" name="glucose" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Blood Pressure:</label>
+                            <input type="number" name="bloodpressure" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Skin Thickness:</label>
+                            <input type="number" name="skinthickness" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Insulin:</label>
+                            <input type="number" name="insulin" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">BMI:</label>
+                            <input type="text" name="bmi" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Diabetes Pedigree Function:</label>
+                            <input type="text" name="dpf" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Age:</label>
+                            <input type="number" name="age" class="form-control" required>
+                        </div>
+                    </div>
+    
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Predict</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+    </html>
